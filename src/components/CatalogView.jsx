@@ -3,7 +3,7 @@ import { ProductCardView } from './ProductCardView';
 import { useEffect, useState } from "react";
 import { getProducts } from '../services/getProducts';
 
-export const CatalogView = ({ title }) => {
+export const CatalogView = ({ title, handlerAddProductCart }) => {
 
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -23,7 +23,8 @@ export const CatalogView = ({ title }) => {
                                     id={id}
                                     name={name}
                                     description={description}
-                                    price={price} />
+                                    price={price} 
+                                    handlerAddProductCart={handlerAddProductCart}/>
                             </div>
                         );
                     })}
@@ -34,5 +35,6 @@ export const CatalogView = ({ title }) => {
 };
 
 CatalogView.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    handlerAddProductCart: PropTypes.func.isRequired
 }

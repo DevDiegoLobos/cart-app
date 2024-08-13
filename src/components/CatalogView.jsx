@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import { ProductCardView } from './ProductCardView';
 import { useEffect, useState } from "react";
 import { getProducts } from '../services/getProducts';
+import { Alert } from './Alert';
 
 export const CatalogView = ({ title, handlerAddProductCart }) => {
 
     const [products, setProducts] = useState([]);
+
     useEffect(() => {
         setProducts(getProducts());
     }, []);
@@ -14,6 +16,10 @@ export const CatalogView = ({ title, handlerAddProductCart }) => {
         <>
             <h2>{title}</h2>
             <div className="container">
+                <div className="container">
+                    <Alert type="success" msg="Producto añadido correctamente" isVisible={false} />
+                </div>
+
                 <div className="row">
                     {products.map(product => {
                         const { id, name, description, price } = product;
@@ -23,8 +29,8 @@ export const CatalogView = ({ title, handlerAddProductCart }) => {
                                     id={id}
                                     name={name}
                                     description={description}
-                                    price={price} 
-                                    handlerAddProductCart={handlerAddProductCart}/>
+                                    price={price}
+                                    handlerAddProductCart={handlerAddProductCart} />
                             </div>
                         );
                     })}

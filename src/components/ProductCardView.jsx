@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 
 export const ProductCardView = ({ id, name, description, price, handlerAddProductCart }) => {
+
     const onAddProduct= (product) => {
         handlerAddProductCart(product);
     }
+    
     return (
         <>
             <div className="card">

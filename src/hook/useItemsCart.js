@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { cartReducer } from "../reducer/cartReducer.js";
 
 const initialCartItems = sessionStorage.getItem("cart")? JSON.parse(sessionStorage.getItem("cart")): [];
@@ -6,6 +6,10 @@ const initialCartItems = sessionStorage.getItem("cart")? JSON.parse(sessionStora
 export const useItemsCart = () => {
     
     const [cartItem, dispacher] = useReducer(cartReducer, initialCartItems);
+
+    useEffect(() => {
+        sessionStorage.setItem("cart", JSON.stringify(cartItem));
+    }, [cartItem]);
 
     const handlerAddProductCart = (product) => {
         const existProduct = cartItem.find(i => i.product.id === product.id);

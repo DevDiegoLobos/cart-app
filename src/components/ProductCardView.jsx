@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 
-export const ProductCardView = ({ id, name, description, price, handlerAddProductCart }) => {
+export const ProductCardView = ({ id, name, description, price, handlerAddProductCart, handlerVisibility }) => {
 
     const onAddProduct= (product) => {
         handlerAddProductCart(product);
+        handlerVisibility();
     }
     
     return (
@@ -25,5 +26,6 @@ ProductCardView.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    handlerAddProductCart: PropTypes.func.isRequired
+    handlerAddProductCart: PropTypes.func.isRequired,
+    handlerVisibility: PropTypes.func.isRequired
 }

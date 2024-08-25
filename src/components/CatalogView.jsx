@@ -7,6 +7,14 @@ import { Alert } from './Alert';
 export const CatalogView = ({ title, handlerAddProductCart }) => {
 
     const [products, setProducts] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handlerVisibility = () => {
+       if (!isVisible){
+        setIsVisible(true);
+       }
+       setTimeout(()=>{setIsVisible(false)}, 2500);
+    }
 
     useEffect(() => {
         setProducts(getProducts());
@@ -17,7 +25,7 @@ export const CatalogView = ({ title, handlerAddProductCart }) => {
             <h2>{title}</h2>
             <div className="container">
                 <div className="container">
-                    <Alert type="success" msg="Producto añadido correctamente" isVisible={false} />
+                    <Alert type="success" msg="Producto añadido correctamente" isVisible={isVisible} />
                 </div>
 
                 <div className="row">
@@ -30,7 +38,8 @@ export const CatalogView = ({ title, handlerAddProductCart }) => {
                                     name={name}
                                     description={description}
                                     price={price}
-                                    handlerAddProductCart={handlerAddProductCart} />
+                                    handlerAddProductCart={handlerAddProductCart}
+                                    handlerVisibility={handlerVisibility} />
                             </div>
                         );
                     })}
